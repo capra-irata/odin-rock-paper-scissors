@@ -29,7 +29,9 @@ function getComputerChoice() {
     case 2:
       return `scissors`;
     default:
-      return `error`;
+      console.error(
+        `Something went wrong when randomly generating the computer's choice.`
+      );
   }
 }
 
@@ -59,9 +61,10 @@ function getPlayerChoice() {
 }
 
 function playRound(computerSelection, playerSelection) {
-  // Return if result is a tie
+  // Return early if result is a tie
   if (computerSelection === playerSelection) {
-    return `You both chose ${playerSelection}! Go again!`;
+    console.log(`You both chose ${playerSelection}! Go again!`);
+    return -1;
   }
 
   // Winner set to player by default for more concise conditionals below
@@ -85,13 +88,45 @@ function playRound(computerSelection, playerSelection) {
       break;
     default:
       console.error(
-        `Something went wrong with processing the player's selection.`
+        `Something went wrong with processing the player's choice.`
       );
   }
 
   if (winner === `player`) {
-    return `You won! ${playerSelection} beats ${computerSelection}.`;
+    console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+    return 1;
   } else {
-    return `You lost! ${computerSelection} beats ${playerSelection}.`;
+    console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
+    return 0;
+  }
+}
+
+function game() {
+  let roundsPlayed = 0;
+  let playerWins = 0;
+
+  while (roundsPlayed < 5) {
+    // playRound() returns -1 in event of a tie. Otherwise, returns 1 if the
+    // player wins and 0 if the player loses
+    const RESULT = playRound(getComputerChoice(), getPlayerChoice());
+
+    if (RESULT === -1) {
+      continue;
+    } else {
+      playerWins += RESULT;
+      roundsPlayed++;
+    }
+  }
+
+  if (playerWins >= 3) {
+    console.log(
+      `Congratulations! You won the match! The final score was
+      ${playerWins}-${Math.abs(playerWins - 5)}.`
+    );
+  } else {
+    console.log(
+      `You lost the match, better luck next time! The final score was
+      ${playerWins}-${Math.abs(playerWins - 5)}.`
+    );
   }
 }
