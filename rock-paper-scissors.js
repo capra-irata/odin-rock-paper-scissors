@@ -57,3 +57,41 @@ function getPlayerChoice() {
     }
   }
 }
+
+function playRound(computerSelection, playerSelection) {
+  // Return if result is a tie
+  if (computerSelection === playerSelection) {
+    return `You both chose ${playerSelection}! Go again!`;
+  }
+
+  // Winner set to player by default for more concise conditionals below
+  let winner = `player`;
+
+  switch (playerSelection) {
+    case `rock`:
+      if (computerSelection === `paper`) {
+        winner = `computer`;
+      }
+      break;
+    case `paper`:
+      if (computerSelection === `scissors`) {
+        winner = `computer`;
+      }
+      break;
+    case `scissors`:
+      if (computerSelection === `rock`) {
+        winner = `computer`;
+      }
+      break;
+    default:
+      console.error(
+        `Something went wrong with processing the player's selection.`
+      );
+  }
+
+  if (winner === `player`) {
+    return `You won! ${playerSelection} beats ${computerSelection}.`;
+  } else {
+    return `You lost! ${computerSelection} beats ${playerSelection}.`;
+  }
+}
