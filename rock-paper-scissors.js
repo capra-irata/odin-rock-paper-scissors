@@ -39,16 +39,16 @@ function getPlayerChoice() {
   // Keep prompting until we get a valid entry of "rock", "paper", or
   // "scissors"
   while (invalidEntry) {
-    const playerChoice = prompt(
+    const PLAYER_CHOICE = prompt(
       `Enter rock, paper, or scissors:`
     ).toLowerCase();
 
-    switch (playerChoice) {
+    switch (PLAYER_CHOICE) {
       case `rock`:
       case `paper`:
       case `scissors`:
         invalidEntry = false;
-        return playerChoice;
+        return PLAYER_CHOICE;
       default:
         alert(
           `ERROR: You entered your choice incorrectly. Check your spelling and
