@@ -18,3 +18,13 @@ function printResults()
 function playRound()
 function game()
 */
+
+function getComputerChoice() {
+  // Generate a random integer inclusively between 0 and 2
+  switch (Math.floor(Math.random() * 3)) {
+    case 0: return `Rock`;
+    case 1: return `Paper`;
+    case 2: return `Scissors`;
+    default: return `Error`;
+  }
+}
