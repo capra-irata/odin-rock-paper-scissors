@@ -22,9 +22,38 @@ function game()
 function getComputerChoice() {
   // Generate a random integer inclusively between 0 and 2
   switch (Math.floor(Math.random() * 3)) {
-    case 0: return `Rock`;
-    case 1: return `Paper`;
-    case 2: return `Scissors`;
-    default: return `Error`;
+    case 0:
+      return `rock`;
+    case 1:
+      return `paper`;
+    case 2:
+      return `scissors`;
+    default:
+      return `error`;
+  }
+}
+
+function getPlayerChoice() {
+  let invalidEntry = true;
+
+  // Keep prompting until we get a valid entry of "rock", "paper", or
+  // "scissors"
+  while (invalidEntry) {
+    const playerChoice = prompt(
+      `Enter rock, paper, or scissors:`
+    ).toLowerCase();
+
+    switch (playerChoice) {
+      case `rock`:
+      case `paper`:
+      case `scissors`:
+        invalidEntry = false;
+        return playerChoice;
+      default:
+        alert(
+          `ERROR: You entered your choice incorrectly. Check your spelling and
+          make sure you didn't add any whitespace characters.`
+        );
+    }
   }
 }
