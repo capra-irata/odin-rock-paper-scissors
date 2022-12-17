@@ -17,8 +17,8 @@ function getComputerChoice() {
 function getPlayerChoice() {
   let invalidEntry = true;
 
-  // Keep prompting until we get a valid entry of "rock", "paper", or
-  // "scissors"
+  // Keep prompting until we get a valid entry of "rock", "paper",
+  // or "scissors"
   while (invalidEntry) {
     const PLAYER_CHOICE = prompt(
       `Enter rock, paper, or scissors:`
@@ -33,7 +33,7 @@ function getPlayerChoice() {
       default:
         alert(
           `ERROR: You entered your choice incorrectly. Check your spelling and
-          make sure you didn't add any whitespace characters.`
+            make sure you didn't add any whitespace characters.`
         );
     }
   }
@@ -85,8 +85,8 @@ function game() {
   let playerWins = 0;
 
   while (roundsPlayed < 5) {
-    // playRound() returns -1 in event of a tie. Otherwise, returns 1 if the
-    // player wins and 0 if the player loses
+    // playRound() returns -1 in event of a tie. Otherwise,
+    // returns 1 if the player wins and 0 if the player loses
     const RESULT = playRound(getComputerChoice(), getPlayerChoice());
 
     if (RESULT === -1) {
