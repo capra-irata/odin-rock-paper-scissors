@@ -80,7 +80,7 @@ function playRound(computerSelection, playerSelection) {
   }
 }
 
-function game() {
+function startGame() {
   let roundsPlayed = 0;
   let playerWins = 0;
 
