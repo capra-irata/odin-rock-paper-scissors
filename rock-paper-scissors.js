@@ -14,40 +14,14 @@ function getComputerChoice() {
   }
 }
 
-/*
-function getPlayerChoice() {
-  let invalidEntry = true;
-
-  // Keep prompting until we get a valid entry of "rock", "paper",
-  // or "scissors"
-  while (invalidEntry) {
-    const PLAYER_CHOICE = prompt(
-      `Enter rock, paper, or scissors:`
-    ).toLowerCase();
-
-    switch (PLAYER_CHOICE) {
-      case `rock`:
-      case `paper`:
-      case `scissors`:
-        invalidEntry = false;
-        return PLAYER_CHOICE;
-      default:
-        alert(
-          `ERROR: You entered your choice incorrectly. Check your spelling and
-            make sure you didn't add any whitespace characters.`
-        );
-    }
-  }
-}
-*/
-
 function playRound(e) {
   const computerSelection = getComputerChoice();
   const playerSelection = e.target.textContent.toLowerCase();
+  const results = document.querySelector(`#results`);
 
   // Return early if result is a tie
   if (computerSelection === playerSelection) {
-    console.log(`You both chose ${playerSelection}! Go again!`);
+    results.textContent = `You both chose ${playerSelection}! Go again!`;
     return -1;
   }
 
@@ -77,10 +51,10 @@ function playRound(e) {
   }
 
   if (winner === `player`) {
-    console.log(`You won! ${playerSelection} beats ${computerSelection}.`);
+    results.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
     return 1;
   } else {
-    console.log(`You lost! ${computerSelection} beats ${playerSelection}.`);
+    results.textContent = `You lost! ${computerSelection} beats ${playerSelection}.`;
     return 0;
   }
 }
