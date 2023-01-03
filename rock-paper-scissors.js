@@ -14,6 +14,7 @@ function getComputerChoice() {
   }
 }
 
+/*
 function getPlayerChoice() {
   let invalidEntry = true;
 
@@ -38,8 +39,12 @@ function getPlayerChoice() {
     }
   }
 }
+*/
 
-function playRound(computerSelection, playerSelection) {
+function playRound(e) {
+  const computerSelection = getComputerChoice();
+  const playerSelection = e.target.textContent.toLowerCase();
+
   // Return early if result is a tie
   if (computerSelection === playerSelection) {
     console.log(`You both chose ${playerSelection}! Go again!`);
@@ -80,6 +85,15 @@ function playRound(computerSelection, playerSelection) {
   }
 }
 
+const options = document.querySelectorAll(`.options`);
+options.forEach((option) => {
+  option.addEventListener(
+    `click`,
+    playRound
+  );
+});
+
+/*
 function startGame() {
   let roundsPlayed = 0;
   let playerWins = 0;
@@ -109,3 +123,4 @@ function startGame() {
     );
   }
 }
+*/
