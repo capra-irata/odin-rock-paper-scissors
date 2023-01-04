@@ -14,57 +14,46 @@ function getComputerChoice() {
   }
 }
 
+function displayWinner(computerSelection, playerSelection, winner) {
+  switch (winner) {
+    case `player`:
+      results.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
+      break;
+    case `computer`:
+      results.textContent = `You lost! ${playerSelection} loses to ${computerSelection}.`;
+      break;
+    default:
+      results.textContent = `You both chose ${playerSelection}! Go again!`;
+      break;
+  }
+}
+
 function playRound(e) {
   const computerSelection = getComputerChoice();
   const playerSelection = e.target.textContent.toLowerCase();
-  const results = document.querySelector(`#results`);
-
-  // Return early if result is a tie
-  if (computerSelection === playerSelection) {
-    results.textContent = `You both chose ${playerSelection}! Go again!`;
-    return -1;
-  }
-
-  // Winner set to player by default for more concise conditionals below
-  let winner = `player`;
+  let winner = ``;
 
   switch (playerSelection) {
     case `rock`:
-      if (computerSelection === `paper`) {
-        winner = `computer`;
-      }
+      if (computerSelection === `scissors`) winner = `player`;
+      else if (computerSelection === `paper`) winner = `computer`;
       break;
     case `paper`:
-      if (computerSelection === `scissors`) {
-        winner = `computer`;
-      }
+      if (computerSelection === `rock`) winner = `player`;
+      else if (computerSelection === `scissors`) winner = `computer`;
       break;
     case `scissors`:
-      if (computerSelection === `rock`) {
-        winner = `computer`;
-      }
+      if (computerSelection === `paper`) winner = `player`;
+      else if (computerSelection === `rock`) winner = `computer`;
       break;
-    default:
-      console.error(
-        `Something went wrong with processing the player's choice.`
-      );
   }
 
-  if (winner === `player`) {
-    results.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
-    return 1;
-  } else {
-    results.textContent = `You lost! ${computerSelection} beats ${playerSelection}.`;
-    return 0;
-  }
+  displayWinner(computerSelection, playerSelection, winner);
 }
 
 const options = document.querySelectorAll(`.options`);
 options.forEach((option) => {
-  option.addEventListener(
-    `click`,
-    playRound
-  );
+  option.addEventListener(`click`, playRound);
 });
 
 /*
