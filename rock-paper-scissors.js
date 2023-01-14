@@ -81,35 +81,3 @@ const options = document.querySelectorAll(`.options`);
 options.forEach((option) => {
   option.addEventListener(`click`, playRound);
 });
-
-/*
-function startGame() {
-  let roundsPlayed = 0;
-  let playerWins = 0;
-
-  while (roundsPlayed < 5) {
-    // playRound() returns -1 in event of a tie. Otherwise,
-    // returns 1 if the player wins and 0 if the player loses
-    const RESULT = playRound(getComputerChoice(), getPlayerChoice());
-
-    if (RESULT === -1) {
-      continue;
-    } else {
-      playerWins += RESULT;
-      roundsPlayed++;
-    }
-  }
-
-  if (playerWins >= 3) {
-    console.log(
-      `Congratulations! You won the match! The final score was
-      ${playerWins}-${Math.abs(playerWins - 5)}.`
-    );
-  } else {
-    console.log(
-      `You lost the match, better luck next time! The final score was
-      ${playerWins}-${Math.abs(playerWins - 5)}.`
-    );
-  }
-}
-*/
