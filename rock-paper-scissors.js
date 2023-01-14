@@ -24,7 +24,6 @@ function displayWinner(computerSelection, playerSelection, winner) {
       break;
     default:
       results.textContent = `You both chose ${playerSelection}! Go again!`;
-      break;
   }
 }
 
