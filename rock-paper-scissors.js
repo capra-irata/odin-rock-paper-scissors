@@ -14,17 +14,44 @@ function getComputerChoice() {
   }
 }
 
-function displayWinner(computerSelection, playerSelection, winner) {
+function displayMatchWinner(winner) {
+  const matchResults = document.querySelector(`#matchResults`);
+
+  if (winner === `player`) {
+    matchResults.textContent = `You won the match! Congratulations!`;
+  } else {
+    matchResults.textContent = `Your opponent won the match. Better luck next time!`;
+  }
+
+  // Remove the buttons so the game can no longer be played
+  options.forEach((option) => option.remove());
+}
+
+function displayRoundWinner(computerSelection, playerSelection, winner) {
+  const round = document.querySelector(`#round`);
+  const playerScore = document.querySelector(`#playerScore`);
+  const computerScore = document.querySelector(`#computerScore`);
+  const roundResults = document.querySelector(`#roundResults`);
+
   switch (winner) {
     case `player`:
-      results.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
+      playerScore.textContent = +playerScore.textContent + 1;
+      roundResults.textContent = `You won! ${playerSelection} beats ${computerSelection}.`;
       break;
     case `computer`:
-      results.textContent = `You lost! ${playerSelection} loses to ${computerSelection}.`;
+      computerScore.textContent = +computerScore.textContent + 1;
+      roundResults.textContent = `You lost! ${playerSelection} loses to ${computerSelection}.`;
       break;
     default:
-      results.textContent = `You both chose ${playerSelection}! Go again!`;
+      roundResults.textContent = `You both chose ${playerSelection}! Go again!`;
   }
+
+  if (+playerScore.textContent === 5 || +computerScore.textContent === 5) {
+    displayMatchWinner(winner);
+    return;
+  }
+
+  round.textContent = +round.textContent + 1;
 }
 
 function playRound(e) {
@@ -47,7 +74,7 @@ function playRound(e) {
       break;
   }
 
-  displayWinner(computerSelection, playerSelection, winner);
+  displayRoundWinner(computerSelection, playerSelection, winner);
 }
 
 const options = document.querySelectorAll(`.options`);
